@@ -3,15 +3,28 @@ import { render, screen } from "@testing-library/react";
 import Logout from "../src/pages/Logout";
 import { signOut } from "firebase/auth";
 
+// ✅ Mock react-router navigate
+jest.mock("react-router-dom", () => ({
+  useNavigate: () => jest.fn(),
+}));
+
+// ✅ Mock firebase auth
 jest.mock("firebase/auth", () => ({
   signOut: jest.fn(),
-  getAuth: () => ({})
+  getAuth: jest.fn(() => ({})),
 }));
 
 describe("Logout Component", () => {
-  test("renders Logout text", () => {
+  test("renders signed out confirmation message", () => {
     render(<Logout />);
-    expect(screen.getByText("Logout")).toBeInTheDocument();
+
+    expect(
+      screen.getByText("You’re signed out")
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText("Thanks for stopping by. Redirecting you home…")
+    ).toBeInTheDocument();
   });
 
   test("calls signOut on mount", () => {

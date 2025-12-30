@@ -1,38 +1,40 @@
-🛍️ FakeStore – Full-Stack E-Commerce Demo
+🛒 FakeStore Demo — Full-Stack E-Commerce Application
 
-A modern full-stack e-commerce application built with React, TypeScript, Redux Toolkit, Firebase, and Tailwind CSS.
-This project demonstrates real-world frontend architecture, authentication, state management, admin authorization, and testing practices.
+A full-stack e-commerce demo application built with React, TypeScript, Firebase, Redux Toolkit, and React Query.
+This project demonstrates real-world patterns such as authentication, role-based access control, state management, admin dashboards, and automated testing.
 
-🚀 Live Demo
+⚠️ This project is intended as a portfolio and resume demo, not a production deployment.
 
-(Optional – add your deployed link here)
-https://your-live-site-url.com
+🚀 Features
+🧑‍💻 User Features
 
-🧠 Project Overview
+User authentication with Firebase Auth
 
-FakeStore is a fully functional e-commerce demo that allows users to browse products, manage a cart, authenticate with Firebase, and place orders.
-An admin-only dashboard provides secure access to product management features such as adding, editing, and deleting products.
+View products with:
 
-The project was designed to be scalable, testable, and resume-ready, following best practices for modern frontend development.
+Category filtering
 
-✨ Features
-👤 User Features
+Search (Fuse.js)
 
-Browse products with search, category filtering, and sorting
+Sorting (price & title)
 
-Add/remove items from cart using Redux Toolkit
+Shopping cart with Redux Toolkit
 
-View cart totals and item counts in real time
+Persistent cart state
 
-Firebase authentication (register, login, logout)
+Order history and order detail pages
 
-User profile with editable personal information
+Profile management (view/edit profile)
 
-Order history view
+Responsive design with Tailwind CSS
 
-🛡️ Admin Features
+🔐 Admin Features
 
-Admin-only dashboard protected by route guards
+Role-based access control using Firestore (isAdmin)
+
+Protected admin routes
+
+Admin dashboard
 
 Add new products
 
@@ -40,43 +42,40 @@ Edit existing products
 
 Delete products
 
-Admin navigation only visible to authorized users
+Admin-only navigation links
 
-Admin permissions stored and validated via Firestore
+Admin access is enforced using:
 
-## 🔐 Demo Admin Access
+Firestore user roles
 
-This application includes an admin dashboard to demonstrate role-based authorization.
+Protected routes (AdminRoute)
 
-You may use the following **demo-only admin credentials** to access admin features:
+Conditional UI rendering
 
-**Email:** katty@example.com  
-**Password:** password1
-
-⚠️ These credentials are for demonstration purposes only.  
-This is a fake account tied to a non-production Firebase project and does not grant access to any real or sensitive data.
-
-Admin access is enforced via a Firestore `isAdmin` flag and protected using route-based guards.
-
-
-🧱 Tech Stack
+🧠 Architecture & Tech Stack
 Frontend
 
 React + TypeScript
 
-Redux Toolkit (cart state management)
-
-React Router v6
+Vite
 
 Tailwind CSS
 
-TanStack React Query
+React Router
+
+Redux Toolkit
+
+React Query
+
+Fuse.js (search)
 
 Backend / Services
 
 Firebase Authentication
 
-Firebase Firestore
+Firestore Database
+
+Role-based authorization (isAdmin flag)
 
 Testing
 
@@ -84,112 +83,143 @@ Jest
 
 React Testing Library
 
-🧪 Testing
+🧪 Automated Tests
 
-This project includes unit and integration tests to validate core functionality.
+This project includes unit and integration tests to demonstrate testing fundamentals.
 
-Included Tests
+✅ CartIntegration.test.tsx
 
-ProductCard Component Test
+Integration test covering:
 
-Verifies product details render correctly
+ProductCard
 
-Ensures clicking “Add to cart” dispatches the correct Redux action
+Redux cart slice
 
-Mocks Redux hooks, Firebase, routing, and UI dependencies
+Cart page
 
-Cart Integration Test
+Verifies:
 
-Confirms cart state updates when a product is added
+Adding a product updates cart state
 
-Validates Redux store integration across components
+Cart UI reflects correct totals
 
-Asserts correct item count and pricing totals
+✅ ProductCard.test.tsx
 
-Logout Component Test
+Unit test for ProductCard component
 
-Ensures Logout page renders successfully
+Verifies:
 
-Confirms Firebase signOut is called on mount
+Product details render correctly
 
-Isolates authentication side effects using Jest mocks
+Redux addToCart action dispatches on button click
 
-Run tests locally with:
+✅ Logout.test.tsx
 
-npm test
+Unit test for Logout page
 
-🔐 Authentication & Authorization
+Verifies:
 
-Firebase Authentication manages user sessions
+Firebase signOut is called on mount
 
-User profiles are stored in Firestore
+Logout UI renders as expected
 
-Admin access is determined by an isAdmin boolean field on the user document
+Mocks are used for:
 
-Admin routes are protected using a custom <AdminRoute /> component
+Firebase
 
-Admin UI elements only render when authorized
+Auth context
 
-🗂️ Project Structure (Simplified)
-src/
-├── components/
-│   ├── Navbar.tsx
-│   ├── ProductCard.tsx
-│   └── AdminRoute.tsx
-├── pages/
-│   ├── Home.tsx
-│   ├── Cart.tsx
-│   ├── Profile.tsx
-│   ├── AdminDashboard.tsx
-│   ├── ManageProducts.tsx
-│   ├── AddProduct.tsx
-│   └── EditProduct.tsx
-├── context/
-│   ├── AuthContext.tsx
-│   └── ProductContext.tsx
-├── redux/
-│   ├── cartSlice.ts
-│   └── store.ts
-├── tests/
-│   ├── ProductCard.test.tsx
-│   ├── CartIntegration.test.tsx
-│   └── Logout.test.tsx
+Redux hooks
 
-📌 What This Project Demonstrates
+React Router
 
-Real-world React + TypeScript architecture
+Third-party UI components
 
-Redux Toolkit usage for global state
+🔑 Admin Access (Demo)
 
-Secure authentication and role-based authorization
+Admin access is controlled via a Firestore field (isAdmin).
 
-Admin route protection and conditional UI rendering
+For security reasons, admin credentials are not included in this repository.
 
-Clean separation of concerns
+To grant admin access:
 
-Component, integration, and side-effect testing
+Create a user account through the application
 
-Scalable structure suitable for production growth
+Open Firebase Console → Firestore Database
 
-📈 Future Improvements
+Navigate to the users collection
 
-Pagination for large product lists
+Set isAdmin: true on the desired user document
 
-Image upload support
+Refresh the session
 
-Order management for admins
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "address": "",
+  "isAdmin": true
+}
 
-Role management UI
+🔒 Production Note
 
-Enhanced accessibility testing
+In a real production environment, admin roles would be managed via:
 
-CI/CD pipeline integration
+Firebase Admin SDK
 
-👋 Author
+Secure backend APIs
+
+Server-side tooling
+
+This demo simulates that workflow appropriately for a frontend-focused portfolio project.
+
+🖥️ Running Locally
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+📦 Environment Variables
+
+Create a .env file with your Firebase configuration:
+
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+
+🌐 Deployment
+
+This project is designed to be deployed with:
+
+Vercel (recommended)
+
+Firebase hosting
+
+Netlify
+
+🎯 Why This Project Matters
+
+This application demonstrates:
+
+Real authentication flows
+
+Role-based authorization
+
+Scalable state management
+
+Admin-only workflows
+
+Clean component architecture
+
+Automated testing practices
+
+It reflects how modern frontend applications are structured in real-world teams.
+
+👩‍💻 Author
 
 Katie Baldridge
-Full-Stack Software Engineer (Frontend-Focused)
-
-GitHub: https://github.com/kattyalice
-
-LinkedIn: (add your LinkedIn here)
+Aspiring Software Engineer | Full-Stack & Frontend Focus
+Built as part of a professional portfolio to demonstrate production-style React applications.
