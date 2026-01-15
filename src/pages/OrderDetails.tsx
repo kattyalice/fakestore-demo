@@ -61,7 +61,7 @@ const OrderDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-10">
+    <div className="min-h-screen bg-slate-50 pt-24 px-4 py-10">
       <div className="max-w-4xl mx-auto bg-white border border-slate-200 rounded-lg shadow-sm p-6">
         <h2 className="text-2xl font-semibold text-slate-900 mb-4">
           Order Details

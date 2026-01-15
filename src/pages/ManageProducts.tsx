@@ -33,12 +33,12 @@ const ManageProducts = () => {
     <div className="max-w-6xl mx-auto pt-24 px-4 py-10">
       <h1 className="text-3xl font-semibold mb-6">Manage Products</h1>
 
-      <button
-        onClick={() => navigate("/add-product")}
-        className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      <Link
+        to="/admin/add-product"
+        className="block bg-blue-600 hover:bg-blue-700 text-white text-center mb-8 py-4 rounded-md font-medium shadow"
       >
-        + Add Product
-      </button>
+        ➕ Add New Product
+      </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product: Product) => (

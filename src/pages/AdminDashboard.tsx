@@ -29,7 +29,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-10">
+    <div className="min-h-screen bg-slate-50 pt-24 px-4 py-10">
       <div className="max-w-4xl mx-auto bg-white shadow-sm border border-slate-200 rounded-lg p-8">
 
         <h1 className="text-3xl font-bold text-slate-900 mb-6 text-center">

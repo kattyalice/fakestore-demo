@@ -20,6 +20,7 @@ import EditProduct from "./pages/EditProduct";
 import AdminRoute from "./components/AdminRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManageProducts from "./pages/ManageProducts";
+import Footer from "./components/Footer";
 
 const client = new QueryClient();
 
@@ -89,6 +90,7 @@ function App() {
                 <Route path="/logout" element={<Logout />} />
 
               </Routes>
+              <Footer />
             </BrowserRouter>
           </ProductProvider>
         </AuthProvider>

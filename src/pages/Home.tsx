@@ -109,6 +109,19 @@ const Home: React.FC = () => {
           >
             Search
           </button>
+          
+          {/* Sort Dropdown */}
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="w-full sm:w-52 rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Sort By</option>
+            <option value="price-low">Price: Low → High</option>
+            <option value="price-high">Price: High → Low</option>
+            <option value="title-az">Title: A → Z</option>
+            <option value="title-za">Title: Z → A</option>
+          </select>
 
           {/* Category Dropdown */}
           <select
@@ -142,27 +155,7 @@ const Home: React.FC = () => {
             Clear Filter
           </button>
 
-          {/* Sort Dropdown */}
-          <select
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-            className="w-full sm:w-52 rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Sort By</option>
-            <option value="price-low">Price: Low → High</option>
-            <option value="price-high">Price: High → Low</option>
-            <option value="title-az">Title: A → Z</option>
-            <option value="title-za">Title: Z → A</option>
-          </select>
 
-          {/* Profile Button */}
-          <button
-            onClick={() => navigate("/profile")}
-            className="px-4 py-2 rounded-md border border-blue-600 text-blue-600 
-              text-sm hover:bg-blue-50"
-          >
-            Go to Profile Page
-          </button>
         </div>
 
         {/* LOADING STATE */}

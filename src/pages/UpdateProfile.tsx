@@ -54,7 +54,7 @@ const UpdateProfile: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-10">
+    <div className="min-h-screen bg-slate-50 pt-24 px-4 py-10">
       <div className="max-w-md mx-auto bg-white border border-slate-200 rounded-lg shadow-sm p-6">
         <h1 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
           Update Profile
