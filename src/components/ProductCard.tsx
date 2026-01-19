@@ -1,8 +1,8 @@
 import React from "react";
 import type { Product } from "../types/types";
 import { Rating } from "@smastrom/react-rating";
-import { useAppDispatch } from "../redux/hooks";
-import { addToCart } from "../redux/cartSlice";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { addToCart, updateCart } from "../redux/cartSlice";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,10 @@ import { Link } from "react-router-dom";
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const dispatch = useAppDispatch();
   const { user } = useAuth();
+
+  const cartItem = useAppSelector((state) =>
+    state.cart.items.find((item) => item.id === product.id)
+);
 
   return (
     <div className="w-full max-w-sm bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
@@ -52,12 +56,52 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         </p>
 
         {/* Add to Cart */}
-        <button
-          onClick={() => dispatch(addToCart(product))}
-          className="mt-2 inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          Add to cart
-        </button>
+        {cartItem ? (
+          <div className="flex items-center gap-2 mt-3">
+            <button
+              onClick={() =>
+                dispatch(
+                  updateCart({
+                    id: product.id,
+                    count: cartItem.count -1,
+                  })
+                )
+              }
+              className="px-2 py-1 rounded-md border border-slate-300 hover:bg-slate-100"
+            >
+              -
+            </button>
+
+            <span className="min-w-6 text-center">
+              {cartItem.count}
+            </span>
+
+            <button
+              onClick={() =>
+                dispatch(
+                  updateCart({
+                    id: product.id,
+                    count: cartItem.count + 1,
+                  })
+                )
+              }
+              className="px-2 py-1 rounded-md border border-slate-300 hover:bg-slate-100"
+            >
+              +
+            </button>
+          </div>
+        ):(
+          <button
+            onClick={() => dispatch(addToCart(product))}
+            className="mt-3 w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            Add to cart
+          </button>
+        )}
+
+
+
+
 
       </div>
     </div>  

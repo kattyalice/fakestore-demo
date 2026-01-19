@@ -14,6 +14,12 @@ jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(() => ({})),
 }));
 
+// ✅ Mock Firebase config
+jest.mock("../src/lib/firebase", () => ({
+  auth: {},
+  db:{},
+}))
+
 describe("Logout Component", () => {
   test("renders signed out confirmation message", () => {
     render(<Logout />);

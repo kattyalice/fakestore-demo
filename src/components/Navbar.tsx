@@ -29,10 +29,10 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
             <Link to="/" className="hover:text-blue-600">Home</Link>
 
-            <Link to="/cart" className="hover:text-blue-600 relative">
+            <Link to="/cart" onClick={closeMenu} className="block px-2 py-1 hover:bg-slate-100">
               Cart
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                <span className="ml-2 inline-flex items-center justify-center bg-blue-900 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                   {cartCount}
                 </span>
               )}
@@ -101,7 +101,7 @@ const Navbar = () => {
             <Link to="/cart" onClick={closeMenu} className="block px-2 py-1 hover:bg-slate-100">
               Cart
               {cartCount > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                <span className="ml-2 inline-flex items-center justify-center bg-blue-900 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                   {cartCount}
                 </span>
               )}

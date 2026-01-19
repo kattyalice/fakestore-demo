@@ -26,7 +26,9 @@ jest.mock("@smastrom/react-rating", () => ({
 // ⭐ Mock Redux
 jest.mock("../src/redux/hooks", () => ({
   useAppDispatch: jest.fn(),
+  useAppSelector: jest.fn(),
 }));
+
 
 jest.mock("react-bootstrap", () => ({
   Button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
@@ -37,7 +39,7 @@ jest.mock("react-bootstrap", () => ({
 // 👍 Now imports
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductCard from "../src/components/ProductCard";
-import { useAppDispatch } from "../src/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../src/redux/hooks";
 import { addToCart } from "../src/redux/cartSlice";
 import "@testing-library/jest-dom";
 import type { Product } from "../src/types/types";
@@ -58,6 +60,11 @@ describe("ProductCard Component", () => {
   beforeEach(() => {
     mockDispatch.mockClear();
     (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    (useAppSelector as jest.Mock).mockImplementation((selectorFn) =>
+      selectorFn({
+        cart: { items: []},
+      })
+    );
   });
 
   test("renders product details", () => {
